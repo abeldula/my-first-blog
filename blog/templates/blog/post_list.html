@@ -1,33 +1,13 @@
-<header>
-    <h1><a href="/">Abel's Blog</a></h1>
-</header>
-{% for post in posts %}
-    <article>
-        <time>published: {{post.published_date}}</time>
-        <h2><a href="">{{post.title}}</a></h2>
-        <p>{post.text|linebreaksbr}</p>
-    </article>
-{% endfor %}
-<!--<!DOCTYPE html>
-<html>
-    <head>
-        <title>Abel's blog</title>
-    </head>
-    <body>
-        <header>
-            <h1><a href="/">Abel's Blog</a></h1>
-        </header>
-        <article>
-            <time>published: 29.09.2023, 11:50</time>
-            <h2><a href="">My first Post</a></h2>
-            <p>ድህነት የሚለው ተመሳሳይ ነው ፍላጎት, መከራ ያ እጥረት ፣ እና "ድሃ" ከሚለው ቅፅል የተገኘ ሲሆን ይህ ደግሞ በተራው ከላቲን ነው ድሃ, pauperēris፣ ትርጉሙም ‹ድሃ› ፣ ‹ጥቂት ያፈራል› ማለት ነው ፡፡</p>
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    {% for post in posts %}
+        <article class="post">
+            <time class="date">
+                {{ post.published_date }}
+            </time>
+            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+            <p>{{ post.text|linebreaksbr }}</p>
         </article>
-        <article>
-            <time>published: 29.09.2023, 11:50</time>
-            <h2><a href="">My Second Post</a></h2>
-            <p>ውስጥ ይገኛል የድህነት ሁኔታ ለህይወት አቅርቦትና ልማት መሰረታዊ አስፈላጊ ሀብቶች የሌሉት ፡፡ ተብሎም ይታወቃል የድህነት ስእለት ህዝባዊ እና በፈቃደኝነት የሃይማኖታዊ ቃል የራሳቸውን እና ሁሉንም መውደዳቸው አስፈላጊ ነው ብለው የሚያስቡትን ሁሉ ለመተው ፡፡ ደግሞም እንደ ድህነት ድፍረትን ፣ መብራቶችን ፣ ሀሳቦችን ፣ በጎነትን ፣ ድፍረትን ወይም ጉልበትን ማጣት ታውቋል ፡፡</p>
-        </article>        
-        <p>Hi there!</p>
-        <p>It works!</p>
-    </body>
-</html>-->
+    {% endfor %}
+{% endblock %}
